@@ -1,0 +1,47 @@
+{
+  "entities": {
+    "VocabularyWord": {
+      "title": "Vocabulary Word",
+      "description": "A word or phrase saved by the user for learning.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who saved this word." },
+        "word": { "type": "string", "description": "The word or phrase." },
+        "definition": { "type": "string", "description": "The definition of the word." },
+        "usage": { "type": "string", "description": "Explanation of how to use the word." },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Example sentences using the word."
+        },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the word was saved." },
+        "masteryLevel": { "type": "number", "description": "User's mastery level (0-100)." }
+      },
+      "required": ["userId", "word", "definition", "createdAt"]
+    },
+    "SpeakingSession": {
+      "title": "Speaking Session",
+      "description": "A record of a speaking practice session.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["echo", "roleplay"], "description": "Type of practice." },
+        "topic": { "type": "string", "description": "The topic or phrase practiced." },
+        "score": { "type": "number", "description": "Score assigned by AI (0-100)." },
+        "feedback": { "type": "string", "description": "AI feedback on pronunciation/fluency." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/vocabulary/{wordId}": {
+      "schema": "VocabularyWord",
+      "description": "User's saved vocabulary words."
+    },
+    "/speakingSessions/{sessionId}": {
+      "schema": "SpeakingSession",
+      "description": "History of speaking practice sessions."
+    }
+  }
+}

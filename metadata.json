@@ -1,0 +1,5 @@
+{
+  "name": "LinguistAI",
+  "description": "A smart English learning companion with AI-powered vocabulary building and speaking practice.",
+  "requestFramePermissions": ["microphone"]
+}
